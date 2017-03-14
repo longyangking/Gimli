@@ -1,9 +1,13 @@
+# Author: Yang Long <longyang_123@yeah.net>
+#
+# License: LGPL-2.1
+
 import numpy as np
 import Rule
 
 class World:
-    def __init__(self,rulefunc,size,initialcells=None,\
-                verbose=False):
+    def __init__(self,rulefunc,size,boundary=None,\
+            initialcells=None,verbose=False):
 
         self.rule = Rule.Rule(rulefunc)
         self.size = size
@@ -13,7 +17,9 @@ class World:
         if initialcells is not None:
             self.cells = initialcells
         else:
-            self.cells = 1.0*(np.random.random(size)<0.5)
+            self.cells = 1*(np.random.random(size)<0.5)
+
+        self.boundary = boundary
 
         # TODO define boundary
         self.x = np.array(range(1,size[0]-1))
