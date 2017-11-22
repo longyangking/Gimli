@@ -1,10 +1,14 @@
 # Gimli
 >Cellular Automaton For Python
 
-![](./examples/simplecase1.jpeg)
-
 ## Features
 + Complex Custom Rule Supported
+
+Custom Rule
+![](./examples/simplecase1.png)
+
+Ising model
+![](./examples/ising.png)
 
 ## Status
 Working on it

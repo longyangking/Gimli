@@ -8,11 +8,19 @@ import numpy as np
 from Gimli.World import World
 
 def func(own,up,down,left,right,upright,downright,upleft,downleft):
-    sum = up + down + left + right + upright + downright + upleft + downleft
-    return 1*(sum==3) or own*(sum==2)
+    #sum = up + down + left + right + upright + downright + upleft + downleft
+    energy = up + down + left + right
+    spin = 1
+    if energy < 0:
+        spin = -1
+    if energy == 0:
+        spin = np.random.choice([1,-1])
+    return spin
 
-world = World(func,[100,100])
-cells = -world.getcells()
+size = [100,100]
+initialcells = np.random.choice([1,-1],size=size)
+world = World(func,size=size,initialcells=initialcells)
+cells = world.getcells()
 
 fig = plt.figure()
 im = plt.imshow(cells,interpolation='none',cmap='gray')
@@ -20,7 +28,7 @@ im = plt.imshow(cells,interpolation='none',cmap='gray')
 
 def animate(i):
     world.update()
-    cells = -world.getcells()
+    cells = world.getcells()
     im.set_array(cells)
     return [im]
 

@@ -3,7 +3,7 @@
 # License: LGPL-2.1
 
 import numpy as np
-import Rule
+from . import Rule
 
 class World:
     def __init__(self,rulefunc,size,boundary=None,\
